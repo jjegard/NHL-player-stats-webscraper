@@ -1,6 +1,8 @@
 # NHL player stats webscraper
 
-## Player columns include:
+## Program is still under construction
+
+### Player columns include:
 1. Player name
 1. Team
 1. Position
@@ -21,7 +23,7 @@
 1. Hits (HIT)
 1. Blocked Shots (BLK)
 
-## Goalie columns include:
+### Goalie columns include:
 1. Goalie name
 1. Team
 1. Games Played (GP)
@@ -34,3 +36,4 @@
 1. Shots Against (SA)
 1. Saves (SV)
 1. Save Percentage (S%)
+1. Shutout (SO)
