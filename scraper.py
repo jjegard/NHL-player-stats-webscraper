@@ -10,32 +10,34 @@ The goal is to scrape the player and goalie stats from nhl.com from the 2018-19 
 would be useful in a hockey pool and save this data in a CSV file.
 """
 
-import urllib.request
 from bs4 import BeautifulSoup
+from selenium import webdriver
+import os
+import inspect
 
+###########################FUNCTIONS########################
 
 def getColumnHeaders(soup:BeautifulSoup):
     return 0;
 
-
-
-
-
-
-
-
-
-
+###############MAIN########################
 url = "http://www.nhl.com/stats/player?reportType=season&seasonFrom=20182019&seasonTo=20182019\
-&gameType=2&filter=gamesPlayed,gte,1&sort=points";
+&gameType=2&filter=gamesPlayed,gte,1&sort=points"; 
+                 
 
-html = urllib.request.urlopen(url).read();
+dir_path = os.path.dirname(os.path.realpath(__file__));
+chromedriver = f'{dir_path}/chromedriver';
+os.environ["webdriver.chrome.driver"] = chromedriver;
+
+
+driver = webdriver.Chrome(executable_path=chromedriver);
+driver.get(url);
+html = driver.page_source;
+
 soup = BeautifulSoup(html, "html5lib");
+rows = soup.find_all("div", class_="rt-tr-group");
 
-#print(soup.prettify());
+print(rows[0]);
 
-table = soup.find_all("tr");
 
-print(len(table));
-print(type(table));
-print(type(soup));
+driver.close();
